@@ -6,6 +6,8 @@ A purely stochastic gradient descent was chosen for simplicity. Consequently, th
 
 You will find an example on the MNIST digit data set in the `Mnist_example.ipynb` file.
 
+To test by hand the model, you can write your own digits and observe if it correctly predicts ! https://yourdigit.streamlit.app/. You can increase the epoch in order to have better results.
+
 ### Import the project
 ```bash
 git clone https://github.com/guillaume77176/Feed-forward-neural-network-from-scratch.git
