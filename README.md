@@ -1,4 +1,4 @@
-# Feed forward network from scratch.
+# Feed forward neural network from scratch.
 
 This implementation is for educational purposes only. It implements a dense neural network in a basic way. The code was written to use simple types to traverse the directed acyclic graph, in particular dictionaries and lists. The code is therefore not optimal in terms of execution time.
 
