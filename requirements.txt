@@ -3,7 +3,4 @@ pandas
 scikit-learn
 streamlit>=1.30
 altair>=5
-<<<<<<< HEAD
 streamlit_drawable_canvas
-=======
->>>>>>> 9c4f7006b7e33bb4a0c8ab17a2d915f62f6f8b56
