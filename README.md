@@ -4,6 +4,8 @@ This implementation is for educational purposes only. It implements a dense neur
 
 A purely stochastic gradient descent was chosen for simplicity. Consequently, the network is trained example by example for each epoch.
 
+You will find an example on the MNIST digit data set in the `Mnist_example.ipynb` file.
+
 ### Import the project
 ```bash
 git clone https://github.com/guillaume77176/Feed-forward-neural-network-from-scratch..git
@@ -45,6 +47,7 @@ loss = model.train()
 #predict (prob)
 y_test = np.array([1])
 x_test = np.array([4,8,3])
+x_test = pd.DataFrame(x_test)
 
 pred_prob = model.predict_prob()
 

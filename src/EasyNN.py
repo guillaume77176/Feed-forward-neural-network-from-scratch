@@ -1,5 +1,5 @@
 ###################################################################
-# Basic implemtation of Feed Forward Neural Network, from scratch #
+# Basic implementation of Feed Forward Neural Network, from scratch #
 ###################################################################
 
 import numpy as np
@@ -25,13 +25,15 @@ def sigmoid(z):
 
 
 def softmax(z):
-    z = z - np.max(z, axis=0, keepdims=True)        # to prevent saturation of softmax
+    z = z - np.max(z, axis=0, keepdims=True)        # avoid saturation of softmax
     exp_z = np.exp(z)
     return exp_z / np.sum(exp_z, axis=0, keepdims=True)
 
 
 """
 Loss functions
+
+(classification only)
 """
 
 
@@ -54,7 +56,7 @@ def cross_entropy(y_true: np.array, y_pred: np.array):
 class FeedForwardNeuralNetwork:
 
     """
-    Feed forward neural network basic class.
+    Feed forward neural network basic class for classification.
 
     Example:
         
@@ -101,7 +103,7 @@ class FeedForwardNeuralNetwork:
 
         y : pd.DataFrame or np.array. Should be the training target set
 
-        loss : only 'binary_cross_entropy', 'cross_entropy' or 'mean_squared'
+        loss : only 'binary_cross_entropy' or 'cross_entropy'
 
         learning_rate : corresponds to the alpha of W += alpha * dW
 
@@ -215,9 +217,9 @@ class FeedForwardNeuralNetwork:
                 self.Act_prime.append(1)    # Usefull for index
         
         # loss function choice
-        if self.loss == "binary_cross_entropy":
+        if self.loss == "binary_cross_entropy" or self.loss == binary_cross_entropy:
             self.loss = binary_cross_entropy
-        elif self.loss == "cross_entropy":
+        elif self.loss == "cross_entropy" or self.loss == cross_entropy:
             self.loss = cross_entropy
         else:
             raise ValueError(f"The loss '{self.loss}' is not implemented yet, or doesn't exist")
