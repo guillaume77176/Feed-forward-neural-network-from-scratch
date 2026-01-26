@@ -57,8 +57,12 @@ x_test = pd.DataFrame(x_test)
 
 pred_prob = model.predict_prob()
 
-#save the model and re-train it
+#save the model
 model.save_param(model_name = 'model_example')  #create a pkl file 'model_example.pkl'
+```
+
+``` python
+#train the model from saved params
 
 with open('model_example.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
