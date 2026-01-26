@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 
 ### Project structure
-
+```
 ├── src/
 │   └── EasyNN.py
 ├── mnist_ffnn.pkl
@@ -20,6 +20,7 @@ pip install -r requirements.txt
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+```
 
 ### Example
 
