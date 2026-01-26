@@ -134,14 +134,14 @@ class FeedForwardNeuralNetwork:
         # init necessary elements for forward phase and backward phase
 
         self.W = dict()             # dict of weights
-        self.B = dict()             # dict of biases
+        self.B = dict()             # dict of bias
         self.H = dict()             # dict of activation units
         self.Z = dict()             # dict of linear units
         self.Act = list()           # list of chosen activation functions
         self.Act_prime = list()     # list of chosen derivatives activation functions
         self.G = dict()             # dict of loss partial derivatives with respect to activation units
         self.dW = dict()            # dict of loss partiel derivatives with respect to weights
-        self.dB = dict()
+        self.dB = dict()            # dict of loss partiel derivatives with respect to bias
 
     def add_hidden_layer(self, layer_rank: int, neurons: int, activation: str):
 
