@@ -1,4 +1,6 @@
 numpy==2.4.1
 pandas
 scikit-learn
-streamlit
+streamlit>=1.30
+altair>=5
+streamlit_drawable_canvas
