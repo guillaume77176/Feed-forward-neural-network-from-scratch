@@ -353,8 +353,11 @@ class FeedForwardNeuralNetwork:
         pred_prob = list()
         nb_layers = len(self.couches)
 
-        x_test = x_test.to_numpy()
-        x_test = x_test.T
+        if isinstance(x_test, pd.DataFrame):
+            x_test = x_test.to_numpy()
+            x_test = x_test.T
+        else:
+            x_test = x_test.T
         
         output_layer = f"layer{nb_layers}"
 
@@ -377,7 +380,7 @@ class FeedForwardNeuralNetwork:
 
     def pre_train(self, couches):
 
-        if isinstance(couches, list()) and isinstance(couches[0],dict()):
+        if isinstance(couches, list) and isinstance(couches[0], dict):
             self.couches = couches
             self.init_act()
         else:
