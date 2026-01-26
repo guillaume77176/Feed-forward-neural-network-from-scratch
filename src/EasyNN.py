@@ -140,8 +140,8 @@ class FeedForwardNeuralNetwork:
         self.Act = list()           # list of chosen activation functions
         self.Act_prime = list()     # list of chosen derivatives activation functions
         self.G = dict()             # dict of loss partial derivatives with respect to activation units
-        self.dW = dict()            # dict of loss partiel derivatives with respect to weights
-        self.dB = dict()            # dict of loss partiel derivatives with respect to bias
+        self.dW = dict()            # dict of loss partial derivatives with respect to weights
+        self.dB = dict()            # dict of loss partial derivatives with respect to bias
 
     def add_hidden_layer(self, layer_rank: int, neurons: int, activation: str):
 
