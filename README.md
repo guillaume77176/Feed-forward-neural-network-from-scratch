@@ -1,2 +1,60 @@
-# Feed-forward-network-from-scratch.
-Basic implementation of an MLP classifier/regressor from scratch for educational purposes only.
+# Feed forward network from scratch.
+
+This implementation is for educational purposes only. It implements a dense neural network in a basic way. The code was written to use simple types to traverse the directed acyclic graph, in particular dictionaries and lists. The code is therefore not optimal in terms of execution time.
+
+A purely stochastic gradient descent was chosen for simplicity. Consequently, the network is trained example by example for each epoch.
+
+### Import the project
+```bash
+git clone https://github.com/guillaume77176/Feed-forward-neural-network-from-scratch..git
+cd Feed-forward-neural-network-from-scratch
+pip install -r requirements.txt
+```
+
+### Project structure
+
+├── src/
+│   └── EasyNN.py
+├── mnist_ffnn.pkl
+├── Mnist_example.ipynb
+├── requirements.txt
+├── README.md
+└── .gitignore
+
+### Example
+
+``` python
+from src.EasyNN import FeedForwardNeuralNetwork
+
+x_train = np.array([0,1,2],[2,5,0],[4,8,2])
+y_train = np.array([0,1,1])
+
+#init the model
+model = (FeedForwardNeuralNetwork(X = x_train, y = y_train, loss = 'binary_cross_entropy',
+        learning_rate = 0.01, epoch = 10))
+
+#add your layers
+model.add_hidden_layer(layer_rank=1, neurons = 64, activation = 'relu')
+model.add_hidden_layer(layer_rank=2, neurons = 12, activation = 'relu')
+model.add_output_layer(neurons = 1, activation = 'sigmoid')
+
+#train the model and get the mean loss per epoch
+loss = model.train()
+
+#predict (prob)
+y_test = np.array([1])
+x_test = np.array([4,8,3])
+
+pred_prob = model.predict_prob()
+
+#save the model and re-train it
+model.save_param(model_name = 'model_example')  #create a pkl file 'model_example.pkl'
+
+with open('model_example.pkl', 'rb') as file:
+    loaded_model = pickle.load(file)
+
+model.pre_train(loaded_model)
+```
+
+### Author 
+guillaume77176
