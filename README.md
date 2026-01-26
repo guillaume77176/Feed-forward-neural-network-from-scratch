@@ -8,8 +8,14 @@ You will find an example on the MNIST digit data set in the `Mnist_example.ipynb
 
 ### Import the project
 ```bash
-git clone https://github.com/guillaume77176/Feed-forward-neural-network-from-scratch..git
+git clone https://github.com/guillaume77176/Feed-forward-neural-network-from-scratch.git
+```
+
+```bash
 cd Feed-forward-neural-network-from-scratch
+```
+
+```bash
 pip install -r requirements.txt
 ```
 
