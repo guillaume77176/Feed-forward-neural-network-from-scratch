@@ -27,8 +27,8 @@ model = init_model()
     
 
 st.set_page_config(
-    page_title="Ma app",
-    page_icon="🎨",
+    page_title="Your digit",
+    page_icon="🧠",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -56,7 +56,7 @@ with col1:
 
 with col2:
 
-    if canvas.image_data is not None and button is True:
+    if canvas.image_data is not None:
 
         img = canvas.image_data[:, :, 0]
 
@@ -71,7 +71,40 @@ with col2:
 
         # make prediction
         pred_prob = model.predict_prob(img)
-        pred = np.argmax(pred_prob[0])
 
-        st.write("PREDICTED DIGIT")
-        st.write(f"<h1 style='font-size:100px'>{pred}</h1>", unsafe_allow_html=True)
+        st.write("**Softmax outputs (probabilities) :**")
+        st.markdown("""
+        <style>
+        div.stProgress > div > div > div > div {
+            height: 10px; 
+        }
+        div[data-testid="stMarkdownContainer"] p {
+            margin: 0;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        sub_col1, sub_col2 = st.columns(2)
+
+        with sub_col1:
+
+            for i in range(0, 5):
+                if button == True:
+                    prob = pred_prob[0][i, 0]
+                else:
+                    prob = 0
+                st.markdown(f"**{i}** : {prob:.4f}%")
+                st.progress(int(prob*100))
+
+        with sub_col2:
+
+            for i in range(5, 10):
+                if button == True:
+                    prob = pred_prob[0][i, 0]
+                else:
+                    prob = 0
+                st.markdown(f"**{i}** : {prob:.4f}%")
+                st.progress(int(prob*100))
+        
+        
+        
