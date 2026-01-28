@@ -23,13 +23,18 @@ pip install -r requirements.txt
 
 ### Project structure
 ```
-├── src/
-│   └── EasyNN.py
-├── mnist_ffnn.pkl
-├── Mnist_example.ipynb
-├── requirements.txt
-├── README.md
-└── .gitignore
+├── .streamlit/          
+│   └── config.toml     
+│
+├── src/                  
+│   └── EasyNN.py       
+│
+├── mnist_ffnn.pkl       
+├── Mnist_example.ipynb   
+├── requirements.txt     
+├── YourDigit.py        
+├── README.md            
+└── .gitignore            
 ```
 
 ### Example
