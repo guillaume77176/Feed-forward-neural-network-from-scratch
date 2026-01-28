@@ -4,3 +4,4 @@ scikit-learn
 streamlit>=1.30
 altair>=5
 streamlit_drawable_canvas
+s3fs

@@ -4,6 +4,10 @@ from src.EasyNN import FeedForwardNeuralNetwork
 import pandas as pd 
 import numpy as np
 import pickle
+import os
+import s3fs
+
+
 
 
 @st.cache_resource
@@ -52,8 +56,8 @@ with col1:
         key="canvas",
     )
 
+    true_digit = st.slider("Please select the true digit before predict : ",0,9)
     button = st.button("Predict")
-
 with col2:
 
     if canvas.image_data is not None:
@@ -67,6 +71,12 @@ with col2:
         # convert img matrix to vector 
         img = img.reshape(1, 28*28)
         img = pd.DataFrame(img)
+
+        column_names = [f"pix_{i+1}" for i in range(img.shape[1])]
+        data_log = img.copy()
+        data_log.columns = column_names
+        data_log["digit"] = true_digit
+
         img = img / 255
 
         # make prediction
@@ -105,6 +115,35 @@ with col2:
                     prob = 0
                 st.markdown(f"**{i}** : {prob:.4f}%")
                 st.progress(int(prob*100))
-        
-        
-        
+
+if button == True:
+
+    
+    url = "https://minio.lab.sspcloud.fr/guillaume176/diffusion/ffnn_mnist/fr_mnist.parquet"
+    past_log = pd.read_parquet(url)
+
+    data_log = pd.concat([past_log, data_log])
+    
+    
+    t1 = st.secrets["DB_1"]
+    t2 = st.secrets["DB_2"]
+    t3 = st.secrets["DB_3"]
+
+
+    os.environ["AWS_ACCESS_KEY_ID"] = t1
+    os.environ["AWS_SECRET_ACCESS_KEY"] = t2
+    os.environ["AWS_SESSION_TOKEN"] = t3
+    os.environ["AWS_DEFAULT_REGION"] = 'us-east-1'
+    fs = s3fs.S3FileSystem(
+        client_kwargs={'endpoint_url': 'https://'+'minio.lab.sspcloud.fr'},
+        key = os.environ["AWS_ACCESS_KEY_ID"], 
+        secret = os.environ["AWS_SECRET_ACCESS_KEY"], 
+        token = os.environ["AWS_SESSION_TOKEN"])
+    
+
+    MY_BUCKET = "guillaume176"
+
+    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/diffusion/ffnn_mnist/fr_mnist.parquet"
+
+    with fs.open(FILE_PATH_OUT_S3, "wb") as file_out:
+        data_log.to_parquet(file_out, index=False)
