@@ -70,6 +70,7 @@ model.save_param(model_name = 'model_example')  #create a pkl file 'model_exampl
 
 ``` python
 #train the model from saved params
+import pickle
 
 with open('model_example.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
